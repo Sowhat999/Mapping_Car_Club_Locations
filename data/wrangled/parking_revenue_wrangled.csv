@@ -1,0 +1,342 @@
+"lad_name","surplus"
+"Adur",80
+"Allerdale",1105
+"Amber Valley",306
+"Arun",206
+"Ashfield",68
+"Ashford",944
+"Babergh",-94
+"Barking and Dagenham",3138
+"Barnet",6703
+"Barnsley",748
+"Barrow-in-Furness",390
+"Basildon",91
+"Basingstoke and Deane",1275
+"Bassetlaw",436
+"Bath and North East Somerset",6336
+"Bedford",1187
+"Bexley",1894
+"Birmingham",9816
+"Blaby",-45
+"Blackburn with Darwen",443
+"Blackpool",3762
+"Bolsover",0
+"Bolton",453
+"Boston",668
+"Bracknell Forest",-164
+"Bradford",2888
+"Braintree",602
+"Breckland",-179
+"Brent",7954
+"Brentwood",747
+"Brighton and Hove",20075
+"Bristol, City of",7696
+"Broadland",-24
+"Bromley",5912
+"Bromsgrove",442
+"Broxbourne",348
+"Broxtowe",14
+"Buckinghamshire",-65
+"Burnley",241
+"Bury",1229
+"Calderdale",1235
+"Cambridge",6042
+"Cambridgeshire",1602
+"Camden",25228
+"Cannock Chase",290
+"Canterbury",4405
+"Carlisle",523
+"Castle Point",404
+"Central Bedfordshire",292
+"Charnwood",325
+"Chelmsford",4490
+"Cheltenham",2367
+"Cherwell",1057
+"Cheshire East",2070
+"Cheshire West and Chester",227
+"Chesterfield",1185
+"Chichester",4169
+"Chorley",431
+"City of London",5264
+"Colchester",2500
+"Copeland",210
+"Corby",0
+"Cornwall",9813
+"Cotswold",1632
+"Coventry",3937
+"Craven",979
+"Crawley",-2
+"Croydon",4176
+"Cumbria",-319
+"Dacorum",577
+"Darlington",1282
+"Dartford",8
+"Daventry",-151
+"Derby",3152
+"Derbyshire",-45
+"Derbyshire Dales",1568
+"Devon",2636
+"Doncaster",0
+"Dorset",586
+"Dover",945
+"Dudley",379
+"County Durham",387
+"Ealing",4468
+"East Cambridgeshire",-80
+"East Devon",2202
+"East Hampshire",1279
+"East Hertfordshire",1119
+"East Lindsey",1785
+"East Northamptonshire",-62
+"East Riding of Yorkshire",1169
+"East Staffordshire",791
+"East Sussex",1277
+"Eastbourne",271
+"Eastleigh",1370
+"Eden",142
+"Elmbridge",1276
+"Enfield",1312
+"Epping Forest",601
+"Epsom and Ewell",2216
+"Erewash",16
+"Essex",-462
+"Exeter",4644
+"Fareham",1261
+"Fenland",-311
+"Forest of Dean",-60
+"Fylde",347
+"Gateshead",353
+"Gedling",-86
+"Gloucester",872
+"Gloucestershire",2489
+"Gosport",469
+"Gravesham",1163
+"Great Yarmouth",861
+"Greenwich",2202
+"Guildford",7298
+"Hackney",12920
+"Halton",-59
+"Hambleton",307
+"Hammersmith and Fulham",22672
+"Hampshire",-23
+"Harborough",489
+"Haringey",14917
+"Harlow",417
+"Harrogate",2229
+"Harrow",7367
+"Hart",463
+"Hartlepool",278
+"Hastings",387
+"Havant",680
+"Havering",1941
+"Herefordshire, County of",3644
+"Hertfordshire",0
+"Hertsmere",463
+"High Peak",715
+"Hillingdon",1901
+"Hinckley and Bosworth",173
+"Horsham",1824
+"Hounslow",7196
+"Huntingdonshire",1139
+"Hyndburn",-78
+"Ipswich",1187
+"Isle of Wight",3074
+"Isles of Scilly",0
+"Islington",15532
+"Kensington and Chelsea",34237
+"Kent",0
+"Kettering",279
+"King's Lynn and West Norfolk",2431
+"Kingston upon Hull, City of",2687
+"Kingston upon Thames",5594
+"Kirklees",1810
+"Knowsley",133
+"Lambeth",9942
+"Lancashire",661
+"Lancaster",1613
+"Leeds",6635
+"Leicester",2417
+"Leicestershire",-78
+"Lewes",418
+"Lewisham",4887
+"Lichfield",1046
+"Lincoln",2665
+"Lincolnshire",403
+"Liverpool",2703
+"Luton",1406
+"Maidstone",1557
+"Maldon",457
+"Malvern Hills",49
+"Manchester",8919
+"Mansfield",-146
+"Medway",3098
+"Melton",300
+"Mendip",1240
+"Merton",6681
+"Mid Devon",361
+"Mid Suffolk",458
+"Mid Sussex",1311
+"Middlesbrough",226
+"Milton Keynes",10757
+"Mole Valley",877
+"New Forest",1235
+"Newark and Sherwood",807
+"Newcastle upon Tyne",7269
+"Newcastle-under-Lyme",586
+"Newham",7692
+"Norfolk",-171
+"North Devon",1832
+"North East Derbyshire",-59
+"North East Lincolnshire",845
+"North Hertfordshire",1119
+"North Kesteven",172
+"North Lincolnshire",-76
+"North Norfolk",1508
+"North Somerset",1589
+"North Tyneside",1767
+"North Warwickshire",-59
+"North West Leicestershire",24
+"North Yorkshire",-1014
+"Northampton",730
+"Northamptonshire",436
+"Northumberland",-389
+"Norwich",2986
+"Nottingham",13556
+"Nottinghamshire",221
+"Nuneaton and Bedworth",1091
+"Oadby and Wigston",-144
+"Oldham",-226
+"Oxford",3736
+"Oxfordshire",2208
+"Pendle",-30
+"Peterborough",2207
+"Plymouth",2756
+"Portsmouth",3534
+"Preston",638
+"Reading",2957
+"Redbridge",3423
+"Redcar and Cleveland",331
+"Redditch",-50
+"Reigate and Banstead",1290
+"Ribble Valley",127
+"Richmond upon Thames",7462
+"Richmondshire",220
+"Rochdale",-65
+"Rochford",905
+"Rossendale",0
+"Rother",843
+"Rotherham",353
+"Rugby",159
+"Runnymede",365
+"Rushcliffe",342
+"Rushmoor",767
+"Rutland",245
+"Ryedale",576
+"Salford",577
+"Sandwell",317
+"Scarborough",3887
+"Sedgemoor",625
+"Sefton",1757
+"Selby",194
+"Sevenoaks",1976
+"Sheffield",3466
+"Shepway",442
+"Shropshire",2751
+"Slough",-489
+"Solihull",1872
+"Somerset",-56
+"South Cambridgeshire",0
+"South Derbyshire",-83
+"South Gloucestershire",-281
+"South Hams",1795
+"South Holland",88
+"South Kesteven",613
+"South Lakeland",1971
+"South Norfolk",4
+"South Northamptonshire",-15
+"South Oxfordshire",518
+"South Ribble",9
+"South Somerset",1187
+"South Staffordshire",-73
+"South Tyneside",329
+"Southampton",5502
+"Southend-on-Sea",4204
+"Southwark",5173
+"Spelthorne",907
+"St Albans",1545
+"St. Helens",99
+"Stafford",743
+"Staffordshire",39
+"Staffordshire Moorlands",65
+"Stevenage",2202
+"Stockport",1065
+"Stockton-on-Tees",154
+"Stoke-on-Trent",1146
+"Stratford-on-Avon",1006
+"Stroud",305
+"Suffolk",0
+"Sunderland",-78
+"Surrey",-696
+"Surrey Heath",826
+"Sutton",1613
+"Swale",1058
+"Swindon",3332
+"Tameside",0
+"Tamworth",744
+"Tandridge",-92
+"Teignbridge",2005
+"Telford and Wrekin",73
+"Tendring",-26
+"Test Valley",1260
+"Tewkesbury",386
+"Thanet",460
+"Three Rivers",-145
+"Thurrock",183
+"Tonbridge and Malling",1175
+"Torbay",3478
+"Torridge",570
+"Tower Hamlets",9479
+"Trafford",573
+"Tunbridge Wells",3829
+"Uttlesford",538
+"Vale of White Horse",-1
+"Wakefield",888
+"Walsall",168
+"Waltham Forest",5725
+"Wandsworth",21174
+"Warrington",41
+"Warwick",1287
+"Warwickshire",1809
+"Watford",1356
+"Waverley",2824
+"Wealden",-445
+"Wellingborough",-347
+"Welwyn Hatfield",553
+"West Berkshire",1610
+"West Devon",339
+"West Lancashire",419
+"West Lindsey",21
+"West Oxfordshire",-154
+"West Sussex",-68
+"Westminster",55875
+"Wigan",1127
+"Wiltshire",3706
+"Winchester",3940
+"Windsor and Maidenhead",4045
+"Wirral",1185
+"Woking",4910
+"Wokingham",1116
+"Wolverhampton",1883
+"Worcester",2086
+"Worcestershire",-8
+"Worthing",939
+"Wychavon",1749
+"Wyre",324
+"Wyre Forest",495
+"York",5609
+"Bournemouth, Christchurch and Poole",9280
+"East Suffolk",1709
+"West Suffolk",2986
+"Buckinghamshire",3382
+"Dorset",4374
+"Somerset West and Taunton",3208
