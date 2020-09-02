@@ -19,7 +19,7 @@ There are five car club operators in total - Co-Wheels, Enterprise Car Club, Ube
 
 Car club locations are then considered at the UK Upper Tier Local Authority level. The total number of car club operators in use for each local authority is plotted:
 
-![operators_per_lad.pdf](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/operators_per_lad.pdf)  
+![operators_per_lad.pdf](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/operators_per_lad.png)  
 
 The map above shows that car clubs are distributed across all regions of the UK.
 Outside of London, there is typically only one or two operators in use (mostly Enterprise and/or Co-wheels). 
@@ -28,6 +28,6 @@ There is a considerable section of the UK with no car club coverage, extending f
 
 The number of *lots* per local authority is mapped, giving an idea of which areas are car club "hot spots".
 
-![lots_per_lad.pdf](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/lots_per_lad.pdf)  
+![lots_per_lad.pdf](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/lots_per_lad.png)  
 
 
