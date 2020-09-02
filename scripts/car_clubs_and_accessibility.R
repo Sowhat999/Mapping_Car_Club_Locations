@@ -37,12 +37,16 @@ map1 <- ggplot() +
         legend.text = element_text(size = 8),
         legend.title = element_text(size = 8),
         legend.position = c(0.05,0.6),
-        plot.caption = element_text(size = 6)) 
+        plot.caption = element_text(size = 8)) 
 
 
-#save map
+#save map as pdf
 ggsave("maps/travel_time_lad.pdf", plot = map1, width = 15, units = "cm")
 
+#save as png
+png("maps/travel_time_lad.png", units="in", width=8, height=7, res=500)
+plot_grid(map1)
+dev.off()
 
 ### map of average travel time with car club locations
 
@@ -85,10 +89,15 @@ map2 <- ggplot() +
         legend.text = element_text(size = 8),
         legend.title = element_text(size = 8),
         legend.position = c(0.05,0.6),
-        plot.caption = element_text(size = 6)) 
+        plot.caption = element_text(size = 8)) 
 
-#save map
+#save map as pdf
 ggsave("maps/travel_time_car_clubs.pdf", plot = map2, width = 15, units = "cm")
+
+#save as png
+png("maps/travel_time_car_clubs.png", units="in", width=8, height=7, res=500)
+plot_grid(map2)
+dev.off()
 
 ### plot both maps side by side
 
@@ -96,18 +105,28 @@ map1b <- map1 +
   theme(legend.position = c(0.05,0.8)) +
 labs(title = "Average travel times and car clubs for local authorities in England",
      subtitle = paste0("The contours represent the average travel times to the nearest town with public transport or on foot. \nThe red dots denote local authorities that contain car club lots."),
-     caption=" ") 
+     caption=" ") +
+  theme(plot.title = element_text(size = 14, face = "bold"),
+        plot.subtitle = element_text(size = 12),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        plot.caption = element_text(size = 10))
   
 
 map2b <- map2 +
   guides(fill = FALSE) +
   labs(title = " ", subtitle = " ") +
-  theme(legend.position = c(0.05,0.8)) 
+  theme(legend.position = c(0.05,0.8),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        plot.caption = element_text(size = 10)) 
 
 map3 <- plot_grid(map1b,map2b,align = "hv")
 
-#save map
-ggsave("maps/travel_time_with_car_clubs_2maps.pdf", plot = map3, width = 20, units = "cm")
+#save as png
+png("maps/travel_time_with_car_clubs_2maps.png", units="cm", width=15, height=7, res=500)
+plot_grid(map3)
+dev.off()
 
 ### scatter plot showing the relationship between parking surplus and the number of car club lots per LAD
 car_clubs_lad <- left_join(car_clubs_lad,travel_times) 

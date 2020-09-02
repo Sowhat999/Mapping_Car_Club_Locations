@@ -7,6 +7,7 @@ library(viridis)
 library(gtools)
 library(sp)
 library(sf)
+library(grDevices)
 
 ### interactive map of car club locations in the UK
 #similar to the one displayed on the comouk website: https://como.org.uk/shared-mobility/shared-cars/Where/
@@ -150,7 +151,7 @@ ggm1 <- ggplot() +
         plot.subtitle = element_text(size = 8),
         legend.text = element_text(size = 8),
         legend.title = element_text(size = 8),
-        plot.caption = element_text(size = 6),
+        plot.caption = element_text(size = 8),
         legend.direction = "horizontal",
         legend.position = "top") 
 
@@ -171,8 +172,13 @@ map1 <- ggdraw() +
   draw_plot(ggm1) +
   draw_plot(ggm2, x = 0.6, y = 0.5, width = 0.25, height = 0.25)
 
+#save as pdf
 ggsave("maps/operators_per_lad.pdf", plot = map1, width = 15, units = "cm")
 
+#save as png
+png("maps/operators_per_lad.png", units="in", width=8, height=7, res=500)
+plot_grid(map1)
+dev.off()
 
 ### map of number of lots per lad 
 
@@ -189,7 +195,7 @@ ggm1 <- ggplot() +
           subtitle = "The blank areas don't have any car club coverage",
           caption = "Data scraped from como.org.uk | Plot by @CaitlinChalk") +
   theme(plot.title = element_text(size = 12, face = "bold"),
-        plot.caption = element_text(size = 6),
+        plot.caption = element_text(size = 8),
         legend.text = element_text(size = 10),
         legend.title = element_text(size = 10),
         legend.direction = "horizontal",
@@ -206,12 +212,17 @@ ggm2 <- ggplot() +
         axis.text.y = element_blank(),
         plot.title = element_text(size = 10)) 
 
-map_cc3 <- ggdraw() +
+map2 <- ggdraw() +
   draw_plot(ggm1) +
   draw_plot(ggm2, x = 0.6, y = 0.5, width = 0.25, height = 0.25)
 
-ggsave("maps/lots_per_lad.pdf", plot = map_cc3, width = 12, units = "cm")
+#save as pdf
+ggsave("maps/lots_per_lad.pdf", plot = map2, width = 12, units = "cm")
 
+#save as png
+png("maps/lots_per_lad.png", units="in", width=8, height=7, res=500)
+plot_grid(map2)
+dev.off()
 
 
 
