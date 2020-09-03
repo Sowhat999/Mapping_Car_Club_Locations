@@ -7,6 +7,8 @@ library(gtools)
 library(sp)
 library(sf)
 
+### load data
+
 travel_times <- read.csv(file = "data/wrangled/accessibility_wrangled.csv")
 
 #load LAD shapefile
@@ -54,7 +56,7 @@ dev.off()
 car_clubs_lad <- read.csv("data/wrangled/car_clubs_lad.csv")
 
 #compute quantiles for the number of lots
-car_clubs_lad$n_lots_q <- quantcut(car_clubs_lad$n_lots, q = 4)
+car_clubs_lad$n_vehicles_q <- quantcut(car_clubs_lad$n_vehicles, q = 4)
 
 #create sf object
 car_clubs_lad.sf <- right_join(lad.sf,car_clubs_lad)
@@ -76,10 +78,10 @@ map2 <- ggplot() +
                                                                                  "20 - 22",
                                                                                  "22 - 26",
                                                                                  "26 - 120")) +
-  geom_sf(data = car_clubs_c, aes(size = n_lots_q, colour = n_lots_q), alpha = 0.7) +
-  guides(size = guide_legend("Number of car club lots"), colour = guide_legend("Number of car club lots")) +
-  scale_colour_brewer(guide = "legend", palette = "Reds",labels = c("1","2-3","4-10","11-374")) +
-  scale_size_discrete(labels = c("1","2-3","4-10","11-374")) +
+  geom_sf(data = car_clubs_c, aes(size = n_vehicles_q, colour = n_vehicles_q), alpha = 0.7) +
+  guides(size = guide_legend("Number of car club vehicles"), colour = guide_legend("Number of car club vehicles")) +
+  scale_colour_brewer(guide = "legend", palette = "Reds",labels = c("1","2-3","4-12", "13-386")) +
+  scale_size_discrete(labels = c("1","2-3","4-12", "13-386")) +
   theme_map() +
   labs(title = "Average travel times and car clubs for local authorities in England",
        subtitle = paste0("The contours represent the average travel times to the nearest town with public transport \nor on foot. The red dots denote local authorities that contain car club lots"),
@@ -131,16 +133,20 @@ dev.off()
 ### scatter plot showing the relationship between parking surplus and the number of car club lots per LAD
 car_clubs_lad <- left_join(car_clubs_lad,travel_times) 
 
-p1 <- ggplot(car_clubs_lad, aes(x = n_lots, y = town_time, fill = n_lots)) +
+p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = town_time, fill = n_vehicles)) +
   geom_point(shape = 21, alpha = 0.8, size = 5) +
   scale_fill_viridis(option = "D", name = "Number of vehicles") +
-  labs(x = "Number of car club lots", y = "Time to nearest town on foot or by public transport (minutes)") +
-  ggtitle("The number of car club vehicles per local \n authority vs travel time to the nearest town") +
+  labs(x = "Number of car club vehicles", y = "Time to nearest town on foot or by public transport (minutes)") +
+  ggtitle("The number of car club vehicles per local authority vs travel time to the nearest town") +
   scale_x_log10() + 
   scale_y_log10() +
   theme_classic() +
-  theme(legend.position = c(0.85,0.7), plot.title = element_text(size = 12),
+  theme(legend.position = c(0.85,0.7), plot.title = element_text(size = 10, face = "bold"),
         legend.title = element_text(size = 10), legend.text = element_text(size = 10),
         axis.title  = element_text(size = 10))
 
-ggsave("plots/travel_time_carclub_lots.pdf", plot = p1, width = 15, height = 10, units = "cm")
+#save as png
+png("maps/travel_time_cc_vehicles.png", units="in", width=6, height=5, res=500)
+plot_grid(p1)
+dev.off()
+

@@ -33,8 +33,9 @@ The number of available car club vehicles per local authority is also analysed, 
 Unsurprisingly, the local authorities with the highest number of available vehicles are in London. Wandsworth has the most, with 386 vehicles. 
 There are however areas outside of London with a high number of vehicles, suggesting that car clubs are also popular in these areas.
 Edinburgh, with 211 car club vehicles, contains the most of London. All vehicles are belong to Enterprise Car Club. Bristol and Brighton and Hove also 
-appear to be popular for car club use, with 130 and 128 vehicles respectively. The following table displays the five local authorities outside of London with 
-the most car club vehicles. 
+appear to be popular for car club use, with 130 and 128 vehicles respectively. The table below displays the five local authorities outside of London with 
+the most car club vehicles. The local authority level data is stored in [car_clubs_lad.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/car_clubs_lad.csv). 
+
 
 | Local Authority       | Number of car club vehicles | Operators  |
 |:---------------------:|:-----------------------:|:----------:|
@@ -44,9 +45,20 @@ the most car club vehicles.
 | Glasgow 	   | 87  | Co-Wheels, Enterprise Car Club |
 | Cambridge    | 63  | Enterprise Car Club, Zipcar | 
 
-The local authority level data is stored in [car_clubs_lad.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/car_clubs_lad.csv). 
 
-4) **Car clubs and parking revenue**<br>
+4) **Car clubs and council parking revenue**<br>
+[car_clubs_and_parking_surplus.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_parking_surplus.R) compares car club distribution with council parking surplus for
+English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016, when English council parking profits exceeded three quarters of a billion pounds (an 11 % increase from the previous year)
+The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv).  
+A high parking revenue for a local authority suggests that a significant number of journeys are made to the area by car. <br>
+![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png) <br> 
 
+![parking_surplus_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_cc_vehicles.png) <br> 
+
+
+5) **Car clubs and accessibility**<br>
+![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_with_car_clubs.png) <br> 
+
+![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png) <br> 
 
 

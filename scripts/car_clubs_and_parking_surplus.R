@@ -25,7 +25,7 @@ map1 <- ggplot() +
   scale_fill_viridis(discrete = TRUE, name = "Parking revenue (£ ,000)", labels = c("-1014 - 64", " 64 - 463", " 463 - 1230", " 1230 - 2820", " 2820 - 55900")) +
   theme_map() +
   labs(title = "Council parking revenue for local authorities in England",
-        caption = "Data from the RAC foundation | Plot by @CaitlinChalk")
+        caption = "Data from the RAC foundation | Plot by @CaitlinChalk") +
   theme(plot.title = element_text(size = 10, face = "bold"),
         plot.subtitle = element_text(size = 8),
         legend.text = element_text(size = 8),
@@ -48,7 +48,7 @@ dev.off()
 car_clubs_lad <- read.csv("data/wrangled/car_clubs_lad.csv")
 
 #compute quantiles for the number of lots
-car_clubs_lad$n_lots_q <- quantcut(car_clubs_lad$n_lots, q = 4)
+car_clubs_lad$n_vehicles_q <- quantcut(car_clubs_lad$n_vehicles, q = 4)
 
 #create sf object
 car_clubs_lad.sf <- right_join(lad.sf,car_clubs_lad)
@@ -66,15 +66,15 @@ car_clubs_c <- st_centroid(car_clubs_lad.sf)
 map2 <- ggplot() +
   geom_sf(data = parking_revenue.sf, aes(fill = surplus_q)) +
   scale_fill_viridis(discrete = TRUE, name = "Parking revenue (£ ,000)", labels = c("-1014 - 64", " 64 - 463", " 463 - 1230", " 1230 - 2820", " 2820 - 55900"),na.translate=FALSE) +
-  geom_sf(data = car_clubs_c, aes(size = n_lots_q, colour = n_lots_q), alpha = 0.7) +
+  geom_sf(data = car_clubs_c, aes(size = n_vehicles_q, colour = n_vehicles_q), alpha = 0.7) +
 #  scale_size(range = c(2,12)) +
-  guides(size = guide_legend("Number of car club lots"), colour = guide_legend("Number of car club lots")) +
-  scale_colour_brewer(guide = "legend", palette = "Reds",labels = c("1","2-3","4-10","11-374")) +
-  scale_size_discrete(labels = c("1","2-3","4-10","11-374")) +
+  guides(size = guide_legend("Number of car club vehicles"), colour = guide_legend("Number of car club vehicles")) +
+  scale_colour_brewer(guide = "legend", palette = "Reds",labels = c("1","2-3","4-12", "13-386")) +
+  scale_size_discrete(labels = c("1","2-3","4-12", "13-386")) +
   theme_map() +
   labs(title = "Council parking revenue for local authorities in England",
      subtitle = " The red dots denote local authorities that contain car club lots",
-       caption = "Parking data from the RAC foundation | Car club data scraped from como.org.uk | Plot by @CaitlinChalk")
+       caption = "Parking data from the RAC foundation | Car club data scraped from como.org.uk | Plot by @CaitlinChalk") +
   theme(plot.title = element_text(size = 10, face = "bold"),
       plot.subtitle = element_text(size = 8),
       legend.text = element_text(size = 8),
@@ -118,21 +118,21 @@ ggsave("maps/parking_surplus_with_car_clubs_2maps.pdf", plot = map3, width = 20,
 ### scatter plot showing the relationship between parking surplus and the number of car club lots per LAD
 car_clubs_lad <- left_join(car_clubs_lad,parking_revenue) 
 
-p1 <- ggplot(car_clubs_lad, aes(x = n_lots, y = surplus, fill = n_lots)) +
+p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = surplus, fill = n_vehicles)) +
   geom_point(shape = 21, alpha = 0.8, size = 5) +
-  scale_fill_viridis(option = "D", name = "Number of lots") +
+  scale_fill_viridis(option = "D", name = "Number of vehicles") +
   labs(x = "Number of car club lots", y = "Council parking surplus (£, 000)") +
-  ggtitle("The number of car club vehicles per local authority \n vs council parking revenue") +
+  ggtitle("The number of car club vehicles per local authority vs council parking revenue") +
   scale_x_log10() + 
   scale_y_log10() +
   theme_classic() +
-  theme(legend.position = c(0.85,0.4), plot.title = element_text(size = 12),
+  theme(legend.position = c(0.85,0.3), plot.title = element_text(size = 10, face = "bold"),
         legend.title = element_text(size = 10), legend.text = element_text(size = 10))
 
-ggsave("plots/parking_surplus_carclub_lots.pdf", plot = p1, width = 15, height = 10, units = "cm")
-
-
-
+#save as png
+png("maps/parking_surplus_cc_vehicles.png", units="in", width=6, height=5, res=500)
+plot_grid(p1)
+dev.off()
 
 
 
