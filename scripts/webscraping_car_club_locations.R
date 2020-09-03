@@ -2,15 +2,9 @@
 
 library(tidyverse)
 library(osmdata)
-library(sf)
-library(sp)
-library(ggmap)
-library(tmap)
-library(maps)
 library(rvest)    
 library(stringr)   
 library(rebus)     
-library(lubridate)
 library(httr) # Parsing of HTML/XML files 
 library(rjson)
 library(jsonlite)
@@ -22,6 +16,7 @@ library(PostcodesioR) #for geocoding (Getting lsoa etc for given lat lon coords)
 #generate request to obtain car club locations from como website
 #the correct URL was obtained using the following guide:
 #https://onlinejournalismblog.com/2017/05/10/how-to-find-data-behind-chart-map-using-inspector/
+
 r <- GET("https://como.org.uk/wp-json/comouk/v1/share-locations?type=location")
 
 #check structure of request
@@ -109,23 +104,4 @@ como <- distinct(como)
 
 #save data to file
 write.csv(como, file = "data/wrangled/car_club_locations.csv", row.names = FALSE)
-
-#create sf object:
-coords.tmp <- cbind(como$lon, como$lat)
-como.sp <- SpatialPointsDataFrame(coords.tmp, data = data.frame(como))
-como.sf <- st_as_sf(como.sp)
-st_crs(como.sf) <- 4326 #set coordinate reference system
-
-#save sf object
-#st_write(como.sf, dsn = "data/wrangled/como_shapefile/como.shp", row.names = FALSE)
-
-### get lad level information
-
-#number of operators and vehicles per lad 
-como_lad <- como %>%
-  group_by(lad) %>%
-  summarise(lad_name = lad_name[1], n_lots = n(), n_operators = length(unique(operator))) 
-
-#save data to file
-write.csv(como_lad, file = "data/wrangled/car_clubs_lad.csv", row.names = FALSE)
 
