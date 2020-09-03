@@ -17,9 +17,10 @@ library(grDevices)
 car_clubs <- read.csv("data/wrangled/car_club_locations.csv")
 
 #get the number of operators and vehicles per lad 
-car_clubs_lad <- car_clubs%>%
+car_clubs_lad <- car_clubs %>%
   group_by(lad) %>%
-  summarise(lad_name = lad_name[1], n_lots = n(), n_operators = length(unique(operator))) 
+  summarise(lad_name = lad_name[1], n_lots = n(), 
+            n_vehicles = sum(number_of_vehicles), n_operators = length(unique(operator))) 
 
 #read lad shapefile
 lad.sf <- st_read("data/wrangled/LAD_shapefile/LAD.shp")
