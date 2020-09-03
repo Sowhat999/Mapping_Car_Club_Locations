@@ -24,10 +24,17 @@ travel_town$town_60mins_pct <- as.numeric(travel_town$town_60mins_pct)
 travel_town$town_30mins_cycle_pct <- as.numeric(travel_town$town_30mins_cycle_pct)
 travel_town$town_30mins_car_pct <- as.numeric(travel_town$town_30mins_car_pct)
 
-#correct outdated lad names and codes
-load("workspace_temp/LAD")
-
 ### replace incorrect lad names and codes
+
+#read data containing outdated lads with replacements 
+lad_replace <- read.csv("data/wrangled/lad_replace.csv")
+
+#convert old name list (separated by " & " into list)
+lad_replace$old_names <- lapply(lad_replace$old_names, strsplit, " & ")
+#unlist to convert to vector
+lad_replace$old_names <- lapply(lad_replace$old_names, unlist)
+#add comma to Bournemouth, Christchurch and Poole
+lad_replace$new_names[lad_replace$new_names == "Bournemouth Christchurch and Poole"] <- "Bournemouth, Christchurch and Poole"
 
 #remove spaces from lad_names for better matching
 travel_town$lad_name2 <- lapply(travel_town$lad_name, function(x)gsub('\\s+','',x))

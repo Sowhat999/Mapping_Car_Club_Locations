@@ -12,7 +12,7 @@ library(curl)
 #source:
 #https://data.gov.uk/dataset/d6f97a1a-25dc-485c-9af3-0e5681465d77/counties-and-unitary-authorities-december-2016-full-clipped-boundaries-in-england-and-wales
 #----------------------------------------------------------------------------------------------
-lad.sf <- st_read(dsn = "data/UK_boundaries/Local_Authority_Districts_UK",layer = "la_boundaries")
+lad.sf <- st_read(dsn = "data/raw/UK_boundaries/Local_Authority_Districts_UK",layer = "la_boundaries")
 
 #select relevant columns and remove islands (they don't have any car club lots and make the map longer)
 lad.sf <- lad.sf %>%
@@ -73,19 +73,20 @@ lad.sf <- lad.sf %>%
                            "Taunton Deane", "West Somerset")))
 
 #make a dataframe of these replacements for reference in other scripts: (also add West Dorset which is relevant in some cases)
-old_names <- list(c("Bournemouth","Christchurch", "Poole"), c("Suffolk Coastal", "Waveney"),
-                  c("St Edmundsbury","Forest Heath"), c("Aylesbury Vale", "South Bucks","Chiltern", "Wycombe"),
-                  c("North Dorset", "East Dorset", "West Dorset","Weymouth and Portland","Purbeck"), c("Taunton Deane", "West Somerset"))
+#separator = & not ,(for writing to csv)
+old_names <- list("Bournemouth & Christchurch & Poole", "Suffolk Coastal & Waveney",
+                  "St Edmundsbury & Forest Heath", "Aylesbury Vale & South Bucks & Chiltern & Wycombe",
+                  "North Dorset & East Dorset & West Dorset & Weymouth and Portland & Purbeck", "Taunton Deane & West Somerset")
 
-new_names <- list("Bournemouth, Christchurch and Poole","East Suffolk", "West Suffolk",
+new_names <- list("Bournemouth Christchurch and Poole","East Suffolk", "West Suffolk",
                   "Buckinghamshire", "Dorset", "Somerset West and Taunton")
 
 new_codes <- list("E06000058","E07000244","E07000245","E06000060", "E06000059","E07000246")
 
-new_geometry <- list(BCP2,ES2,WS2,Buck2,NED2,TDWS2)
+lad_replace <- data.frame(old_names = I(old_names), new_names = I(new_names), new_codes = I(new_codes))
 
-lad_replace <- data.frame(old_names = I(old_names), new_names = I(new_names),
-                          new_codes = I(new_codes), new_geometry = I(new_geometry))
+write.csv(lad_replace, 'data/wrangled/lad_replace.csv', row.names = FALSE)
+#to do - add old codes, not just old names
 
 #correct Glasgow city, Fife, North Lanarkshire and Perth and Kinross lad codes:
 #(according to google)
@@ -123,63 +124,29 @@ lad.sf$Region[lad.sf$lad_name %in% c("East Suffolk","West Suffolk")] <- "East of
 #add Buckinghamshire to South East
 lad.sf$Region[lad.sf$lad_name == "Buckinghamshire"] <- "South East"
 
-#get shape file for England only
-
-lad_england.sf <- lad.sf %>% 
-  filter(!(Region %in% c("Scotland", "Northern Ireland", "Wales")))
-
-### hexagon LAD file for the UK from ESRI
-
-hex.sf <- st_read("data/UK_boundaries/GB_Hex_Cartogram_LAs/GB_Hex_Cartogram_LAs.shp")
-
-hex.sf <- hex.sf %>%
-  select(lad_name = LAD12NM, geometry)
-
-#edit lad names (not geometries) of hex.sf 
-for (i in seq(1,nrow(lad_replace))){
-  #list of old lad names for replacement
-  old_lads <- hex.sf$lad_name[hex.sf$lad_name %in% lad_replace$old_names[[i]]]
-  if (length(old_lads) > 0){
-    #new, combined lad name
-    new_lad <- lad_replace$new_names[[i]] 
-    #replace old names
-    hex.sf$lad_name[hex.sf$lad_name %in% lad_replace$old_names[[i]]] <- new_lad
-  }
-}
-
-#add codes and region to hex.sf
-hex.sf <- left_join(hex.sf,select(data.frame(lad.sf),!geometry), by = "lad_name")
-
 
 ### Unitary Authority boundaries
 #source:
 #https://geoportal.statistics.gov.uk/datasets/counties-and-unitary-authorities-december-2017-ultra-generalised-clipped-boundaries-in-uk-wgs84/data
 #-----------------------------------------------------------------------------------------------
 
-ua.sf <- st_read(dsn = "data/UK_boundaries/Counties_and_UAs",layer = "UA")
+ua.sf <- st_read(dsn = "data/raw/UK_boundaries/Counties_and_UAs",layer = "UA")
 ua.sf <- select(ua.sf,ua = ctyua17cd, ua_name = ctyua17nm, geometry)
 
 #read LAD (lower tier) to Unitary Authority & county (upper tier) conversion data
 #source - 
 
-LADtoUA <-  read_csv("data/UK_boundaries/Lower_tier_Upper_tier.csv")
+LADtoUA <-  read_csv("data/raw/UK_boundaries/Lower_tier_Upper_tier.csv")
 LADtoUA <- select(LADtoUA,!FID)
 colnames(LADtoUA) <- c("lad","lad_name","ua", "ua_name")
 
-#add UA info to lad_england.sf:
-lad_england.sf <- left_join(lad_england.sf, select(LADtoUA, !lad_name))
 lad.sf <- left_join(lad.sf, select(LADtoUA, !lad_name))
 
 #add UA name and code for Buckinghamshire:
 lad.sf$ua_name[lad.sf$lad_name == "Buckinghamshire"] <- "Buckinghamshire"
 lad.sf$ua[lad.sf$lad_name == "Buckinghamshire"] <- LADtoUA$ua[LADtoUA$ua_name == "Buckinghamshire"][1]  
 
-#save to file
-save(lad.sf, lad_england.sf, lad_replace, hex.sf, ua.sf, file = "workspace/LAD")
- 
-#save shapefiles and csv
+#save shapefile
 st_write(lad.sf, "data/wrangled/LAD_shapefile/LAD.shp", row.names = FALSE)
-write.csv(lad_replace, "data/wrangled/lad_replace.csv", row.names = FALSE)
-
 
 

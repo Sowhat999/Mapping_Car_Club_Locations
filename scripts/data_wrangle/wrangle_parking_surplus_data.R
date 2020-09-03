@@ -14,9 +14,6 @@ library(varhandle)
 car_park_revenue <- read_excel("data/raw/contextual_open_data/Local_Authority_Parking_Operations_Revenue_Outturn_for_England_2015_16.xlsx",
                                range = "A3:G356")
 
-#read shape files
-load("workspace_temp/LAD")
-
 #select LAD and 2015-16 surplus data (the most recent year with data)
 car_park_revenue <- select(car_park_revenue, `Local authority`, `2015-16`) %>%
   rename(lad_name = `Local authority`, surplus = `2015-16`)
@@ -35,6 +32,18 @@ car_park_revenue$surplus[car_park_revenue$lad_name == "Reading"] <- 2957
 
 #replace the & with "and"
 car_park_revenue$lad_name <- gsub("&", "and", car_park_revenue$lad_name)
+
+### replace incorrect lad names and codes
+
+#read data containing outdated lads with replacements 
+lad_replace <- read.csv("data/wrangled/lad_replace.csv")
+
+#convert old name list (separated by " & " into list)
+lad_replace$old_names <- lapply(lad_replace$old_names, strsplit, " & ")
+#unlist to convert to vector
+lad_replace$old_names <- lapply(lad_replace$old_names, unlist)
+#add comma to Bournemouth, Christchurch and Poole
+lad_replace$new_names[lad_replace$new_names == "Bournemouth Christchurch and Poole"] <- "Bournemouth, Christchurch and Poole"
 
 #combine outdated LAD names according to lad_replace
 for (i in seq(1,nrow(lad_replace))){
@@ -58,9 +67,6 @@ names_new <- c("Bath and North East Somerset", "Bristol, City of", "Derby", "Her
 for (i in seq(1,length(names_old))){
   car_park_revenue$lad_name <- gsub(names_old[i], names_new[i], car_park_revenue$lad_name)
 }
-
-#combine car_park_revenue with lad_england.sf via the lad_name column
-car_park_revenue.sf <- left_join(lad_england.sf,car_park_revenue)
 
 #save variables to workspace
 write.csv(car_park_revenue, file = "data/wrangled/parking_revenue_wrangled.csv", row.names = FALSE)

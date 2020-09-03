@@ -63,10 +63,10 @@ geog5 <- "Mid, North and West Wales, South West England, with parts of East Angl
 tourism_table <- data.frame(`Tourism cluster` = c("Cluster 1", "Cluster 2", "Cluster 3", "Cluster 4", "Cluster 5"), `Characteristics` = c(char1,char2,char3,char4,char5),
                       `Geography` = c(geog1, geog2, geog3, geog4, geog5))
 
-library(gridExtra)
-pdf("tourism_cluster_table.pdf", height=20, width=20)
-grid.table(tourism_table)
-dev.off()
+#library(gridExtra)
+#pdf("tourism_cluster_table.pdf", height=20, width=20)
+#grid.table(tourism_table)
+#dev.off()
 
 #https://www.ons.gov.uk/peoplepopulationandcommunity/leisureandtourism/bulletins/subnationaltourism/aspatialclassificationofareasinenglandandwalestoshowtheimportanceoftourismatcountyandunitaryauthoritylevel2011to2013
 
@@ -75,9 +75,18 @@ dev.off()
 ### map of tourism with car club lots plotted on top 
 #get centroid of each LAD that contains car club lots
 
-como_lad_c <- como_lad.sf %>%
-  filter(!is.na(n_lots)) %>%
-  select(lad_name, n_lots, n_lots_q, Region, geometry) %>%
+#read car club data at lad level
+car_clubs_lad <- read.csv("data/wrangled/car_clubs_lad.csv")
+
+#compute quantiles for the number of lots
+car_clubs_lad$n_vehicles_q <- quantcut(car_clubs_lad$n_vehicles, q = 4)
+
+#create sf object
+car_clubs_lad.sf <- right_join(lad.sf,car_clubs_lad)
+
+como_lad_c <- car_clubs_lad.sf %>%
+  filter(!is.na(n_vehicles)) %>%
+  select(lad_name, n_vehicles, n_vehicles_q, Region, geometry) %>%
   st_centroid()
 
 como_lad_c2 <- como_lad_c %>%
@@ -86,7 +95,7 @@ como_lad_c2 <- como_lad_c %>%
 p2 <- ggplot() +
   geom_sf(data = tourism.sf, aes(fill = tourism_cluster)) +
   scale_fill_viridis(discrete = TRUE, name = "",na.translate=FALSE) +
-  geom_sf(data = como_lad_c2, aes(size = n_lots_q, colour = n_lots_q), alpha = 0.7) +
+  geom_sf(data = como_lad_c2, aes(size = n_vehicles_q, colour = n_vehicles_q), alpha = 0.7) +
   # guides(size = guide_legend("Number of car club lots"),
   #      fill = FALSE) +
   guides(fill = FALSE, size = guide_legend("Number of car club lots"), colour = guide_legend("Number of car club lots")) +
@@ -101,4 +110,28 @@ p2 <- ggplot() +
         legend.title = element_text(size = 10),
         legend.direction = "horizontal",
         legend.position = "top") 
+
+
+#number of local authorities with car clubs
+tourism_como <- car_clubs_lad%>%
+  group_by(lad_name) %>%
+  mutate(lad_count = n()) %>%
+  ungroup() %>%
+  left_join(select(tourism,lad_name,tourism_cluster)) %>%
+  filter(!is.na(tourism_cluster))
+
+tourism_como$tourism_cluster <- factor(tourism_como$tourism_cluster)
+
+tourism_como2 <- tourism_como %>%
+  group_by(tourism_cluster) %>%
+  summarise(lots_per_LAD = mean(n_vehicles))
+
+ggplot(tourism_como2, aes(x = tourism_cluster, y = lots_per_LAD, fill = tourism_cluster)) +
+  geom_bar(stat = "identity") +
+  scale_fill_viridis(discrete = TRUE) +
+  guides(fill = FALSE) +
+  labs(x = "Tourism cluster", y = "Average number of car club vehicles") +
+  ggtitle("Car club bays per tourism cluster") +
+  theme(plot.title = element_text(size = 10, face = "bold"))
+
 

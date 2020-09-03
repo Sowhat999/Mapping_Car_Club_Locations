@@ -147,7 +147,7 @@ p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = town_time, fill = n_vehicles
         legend.direction = "horizontal")
 
 #save as png
-png("maps/travel_time_cc_vehicles.png", units="in", width=6, height=3, res=500)
+png("plots/travel_time_cc_vehicles.png", units="in", width=6, height=3, res=500)
 plot_grid(p1)
 dev.off()
 

@@ -32,9 +32,6 @@ tourism_lad$tourism_cluster[tourism_lad$Region == "London"] <-
 #add Bournemouth, Christchurch & Pool (Combined score of 5)
 tourism_lad$tourism_cluster[tourism_lad$lad_name == "Bournemouth, Christchurch and Poole"] <- 5
 
-#add tourism to ua_england.sf to check that each ua has a tourism score
-ua.sf <- left_join(ua.sf,select(tourism,!ua))
-
 #save tourism data
 write.csv(tourism_lad, file = "data/contextual_open_data/tourism_wrangled.csv", row.names = FALSE)
 

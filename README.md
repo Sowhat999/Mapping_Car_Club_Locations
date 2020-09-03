@@ -5,7 +5,7 @@ This work is part of a data science project with Leeds Institute for Data Analyt
 
 1) **Obtaining the car club locations** 
 [webscraping_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/webscraping_car_club_locations.R) uses a web-scraping technique to extract the locations (with lat long coordinates)
-of all car club *lots* (i.e. parking bay/pick-up location) in the UK. These locations were extracted from an existing interactive map of car club locations on the CoMoUK website (https://como.org.uk/shared-mobility/shared-cars/where/). 
+of all car club *lots* (i.e. parking bay/pick-up location) in the UK. These data were extracted from an existing interactive map of car club locations on the CoMoUK website (https://como.org.uk/shared-mobility/shared-cars/where/). 
 CoMoUK, short for Collaborative Mobility UK, are researching and developing shared transport and integrated mobility options in the UK. As well as the lot locations, the scraped car club data also includes the operator of the car club in question, and the
 number of vehicles stationed at each lot.
 There are five operators in total - Co-Wheels, Enterprise Car Club, Ubeeqo, Zipcar and Zipcar Flex.
@@ -60,8 +60,8 @@ This indicates that car clubs are most established in areas that are popular tra
 [car_clubs_and_accessibility.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_accessibility.R) explores the number of car club vehicles per local authority with respect to
 the accessibility of the nearest town. The accessibility data is provided by the Department for Transport (https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts), and contains the
 average time taken per local authority to travel to the nearest town using public transport or by walking. <br>
-![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_with_car_clubs.png) <br> 
+![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_with_car_clubs.png) <br> 
 Plotting the travel time against the number of car club vehicles shows that there are generally fewer vehicles available in areas that are less accessibile:
-![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png) <br> 
-
+![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_cc_vehicles.png) <br> 
+This suggests that car clubs are more successful in areas with better public transport options.
 
