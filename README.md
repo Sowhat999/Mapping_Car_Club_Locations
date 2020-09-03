@@ -16,7 +16,9 @@ The processed data is stored in [car_club_locations.csv](https://github.com/Cait
 First, the interactive map on the CoMoUK website is recreated, showing the car club locations and the corresponding operator. This is in html format, and can be downloaded from 
 [car_club_locations.html](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_club_locations.html). This file is too big to view in github - a static snapshot is provided below: 
 
+<div align="center">
 ![car_clubs_html_preview.PNG](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_clubs_html_preview.PNG)  
+</div>
 
 3) **Analysing car club distribution at the Upper Tier Local Authority level**<br>
 [car_clubs_lad_level.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_lad_level.R) gets local authority level variables,
