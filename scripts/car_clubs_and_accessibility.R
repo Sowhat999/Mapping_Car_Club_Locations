@@ -94,10 +94,10 @@ map2 <- ggplot() +
         plot.caption = element_text(size = 8)) 
 
 #save map as pdf
-ggsave("maps/travel_time_car_clubs.pdf", plot = map2, width = 15, units = "cm")
+ggsave("maps/travel_time_with_car_clubs.pdf", plot = map2, width = 15, units = "cm")
 
 #save as png
-png("maps/travel_time_car_clubs.png", units="in", width=8, height=7, res=500)
+png("maps/travel_time_with_car_clubs.png", units="in", width=8, height=7, res=500)
 plot_grid(map2)
 dev.off()
 
@@ -141,12 +141,13 @@ p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = town_time, fill = n_vehicles
   scale_x_log10() + 
   scale_y_log10() +
   theme_classic() +
-  theme(legend.position = c(0.85,0.7), plot.title = element_text(size = 10, face = "bold"),
-        legend.title = element_text(size = 10), legend.text = element_text(size = 10),
-        axis.title  = element_text(size = 10))
+  theme(legend.position = c(0.65,0.8), plot.title = element_text(size = 10, face = "bold"),
+        legend.title = element_text(size = 8), legend.text = element_text(size = 8),
+        axis.title  = element_text(size = 7),
+        legend.direction = "horizontal")
 
 #save as png
-png("maps/travel_time_cc_vehicles.png", units="in", width=6, height=5, res=500)
+png("maps/travel_time_cc_vehicles.png", units="in", width=6, height=3, res=500)
 plot_grid(p1)
 dev.off()
 
