@@ -59,6 +59,6 @@ A high parking revenue for a local authority suggests that a significant number 
 5) **Car clubs and accessibility**<br>
 ![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_with_car_clubs.png) <br> 
 
-![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png) <br> 
+![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png =50x40) <br> 
 
 
