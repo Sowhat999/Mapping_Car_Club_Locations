@@ -3,7 +3,7 @@
 Plots and analysis related to car club locations in the UK.
 This work is part of a data science project with Leeds Institute for Data Analytics and the Department of Transport, University of Leeds, exploring car clubs as a sustainable alternative to privately owned vehicles.  
 
-1) Obtaining the car club locations
+1) Obtaining the car club locations 
 [webscraping_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/webscraping_car_club_locations.R) uses a web-scraping technique to extract the locations (with lat long coordinates)
 of all car club *lots* (i.e. parking bay/pick-up location) in the UK. These locations were extracted from an existing interactive map of car club locations on the CoMoUK website (https://como.org.uk/shared-mobility/shared-cars/where/). 
 CoMoUK, short for Collaborative Mobility UK, are researching and developing shared transport and integrated mobility options in the UK. As well as the lot locations, the scraped car club data also includes the operator of the car club in question.
@@ -13,7 +13,7 @@ The processed data is stored in [car_club_locations.csv](https://github.com/Cait
 [car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_club_locations.R) produces maps showing the distribution of car clubs in the UK.
 First, the interactive map on the CoMoUK website is recreated, showing the car club locations and the corresponding operator:
 
-![car_club_locations.html](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_club_locations.html)  
+![car_clubs_html_preview.PNG](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_clubs_html_preview.PNG)  
 
 There are five car club operators in total - Co-Wheels, Enterprise Car Club, Ubeeqo, Zipcar and Zipcar Flex.
 
