@@ -24,19 +24,23 @@ map1 <- ggplot() +
   geom_sf(data = parking_revenue.sf, aes(fill = surplus_q)) +
   scale_fill_viridis(discrete = TRUE, name = "Parking revenue (£ ,000)", labels = c("-1014 - 64", " 64 - 463", " 463 - 1230", " 1230 - 2820", " 2820 - 55900")) +
   theme_map() +
-  ggtitle("Council parking revenue 2015-2016 for local authorities in England.",
-   subtitle = "Data provided by http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion") +
-  theme(plot.title = element_text(size = 12, face = "bold"),
-        plot.subtitle = element_text(size = 7),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-        # legend.direction = "horizontal",
-        legend.position = c(0.05,0.6)) 
+  labs(title = "Council parking revenue for local authorities in England",
+        caption = "Data from the RAC foundation | Plot by @CaitlinChalk")
+  theme(plot.title = element_text(size = 10, face = "bold"),
+        plot.subtitle = element_text(size = 8),
+        legend.text = element_text(size = 8),
+        legend.title = element_text(size = 8),
+        legend.position = c(0.05,0.6),
+        plot.caption = element_text(size = 8))  
 
 
-#save map
+#save map as pdf
 ggsave("maps/parking_surplus_lad.pdf", plot = map1, width = 15, units = "cm")
 
+#save as png
+png("maps/parking_surplus_lad.png", units="in", width=8, height=7, res=500)
+plot_grid(map1)
+dev.off()
 
 ### map of parking revenue with car club locations overlain
 
@@ -68,20 +72,24 @@ map2 <- ggplot() +
   scale_colour_brewer(guide = "legend", palette = "Reds",labels = c("1","2-3","4-10","11-374")) +
   scale_size_discrete(labels = c("1","2-3","4-10","11-374")) +
   theme_map() +
-  ggtitle("Council parking revenue 2015-2016 for local authorities in England.",
-          subtitle = " The red dots denote local authorities that contain car club lots
-          \n Parking data provided by http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion
-          \n Car club locations are scraped from https://como.org.uk/shared-mobility/shared-cars/where/") +
-  
-  theme(plot.title = element_text(size = 12, face = "bold"),
-        plot.subtitle = element_text(size = 7),
-        legend.text = element_text(size = 10),
-        legend.title = element_text(size = 10),
-        # legend.direction = "horizontal",
-        legend.position = c(0.05,0.6)) 
+  labs(title = "Council parking revenue for local authorities in England",
+     subtitle = " The red dots denote local authorities that contain car club lots",
+       caption = "Parking data from the RAC foundation | Car club data scraped from como.org.uk | Plot by @CaitlinChalk")
+  theme(plot.title = element_text(size = 10, face = "bold"),
+      plot.subtitle = element_text(size = 8),
+      legend.text = element_text(size = 8),
+      legend.title = element_text(size = 8),
+      legend.position = c(0.05,0.6),
+      plot.caption = element_text(size = 6)) 
 
-#save map
+#save map as pdf
 ggsave("maps/parking_surplus_with_car_clubs.pdf", plot = map2, width = 15, units = "cm")
+
+#save as png
+png("maps/parking_surplus_with_car_clubs.png", units="in", width=8, height=7, res=500)
+plot_grid(map2)
+dev.off()
+
 
 ### plot both maps side by side
 

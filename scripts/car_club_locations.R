@@ -98,7 +98,7 @@ map_cc <- tm_shape(filter(car_clubs.sf, operator == "Co-Wheels")) +
   tm_shape(filter(car_clubs.sf, operator == "Zipcar Flex")) +
   tm_markers(shape = logo_zipcarflex, clustering = TRUE) +
   tmap_options(basemaps = "OpenStreetMap") +
-  tm_layout(title = "Car club lot locations in the UK, scraped from car_clubs.org.uk")
+  tm_layout(title = "Car club lot locations in the UK, scraped from como.org.uk")
 
 tmap_save(map_cc, file = "maps/car_club_locations.html")
 
