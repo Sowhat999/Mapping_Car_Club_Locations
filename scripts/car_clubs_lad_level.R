@@ -31,11 +31,13 @@ car_clubs_lad <- left_join(car_clubs_lad, select(data.frame(lad.sf), lad, Region
 #save data to file
 write.csv(car_clubs_lad, file = "data/wrangled/car_clubs_lad.csv", row.names = FALSE)
 
-#compute quantiles for the number of lots
+#compute quantiles for the number of lots and vehicles
 car_clubs_lad$n_lots_q <- quantcut(car_clubs_lad$n_lots, q = 4)
+car_clubs_lad$n_vehicles_q <- quantcut(car_clubs_lad$n_vehicles, q = 4)
 
 #convert plotting variables to factors
 car_clubs_lad$n_lots_q <- factor(car_clubs_lad$n_lots_q)
+car_clubs_lad$n_vehicles_q <- factor(car_clubs_lad$n_vehicles_q)
 car_clubs_lad$n_operators <- factor(car_clubs_lad$n_operators)
 
 #create sf object
@@ -140,6 +142,48 @@ png("maps/lots_per_lad.png", units="in", width=8, height=7, res=500)
 plot_grid(map2)
 dev.off()
 
+### map of number of vehicles per lad 
 
+ggm1 <- ggplot() +
+  geom_polygon(data = UK, aes(x=long, y = lat, group = group), fill="grey", alpha=0.9) +
+  geom_sf(data = car_clubs_lad.sf, aes(fill = n_vehicles_q)) +
+  geom_rect(aes(xmin = london_bbox$xmin, xmax = london_bbox$xmax, ymin = london_bbox$ymin , ymax = london_bbox$ymax), fill = NA, colour = "black", size = 1.5) +
+  scale_fill_viridis(discrete = TRUE, name = "",na.translate=FALSE, labels = c("1", "2-3", "4-12", "13-386")) + 
+  #scale_fill_gradientn(colours=rev(rainbow(5)), name = "") +
+  theme_map() +
+  ylim(50, 58.5) +
+  #scale_fill_manual(values = mypalette2, name = "") +
+  labs(title = "The number of car club vehicles per local authority",
+       subtitle = "The blank areas don't have any car club coverage",
+       caption = "Data scraped from como.org.uk | Plot by @CaitlinChalk") +
+  theme(plot.title = element_text(size = 12, face = "bold"),
+        plot.caption = element_text(size = 8),
+        legend.text = element_text(size = 10),
+        legend.title = element_text(size = 10),
+        legend.direction = "horizontal",
+        legend.position = "top") 
+
+ggm2 <- ggplot() +
+  geom_sf(data = cc_london.sf, aes(fill = n_vehicles_q)) +
+  # scale_fill_viridis(discrete = TRUE, name = "Number of operators",option = "E") +
+  scale_fill_viridis(discrete=TRUE) +
+  guides(fill = FALSE) +
+  ggtitle("London") +
+  theme_bw() +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        plot.title = element_text(size = 10)) 
+
+map3 <- ggdraw() +
+  draw_plot(ggm1) +
+  draw_plot(ggm2, x = 0.6, y = 0.5, width = 0.25, height = 0.25)
+
+#save as pdf
+ggsave("maps/vehicles_per_lad.pdf", plot = map3, width = 12, units = "cm")
+
+#save as png
+png("maps/vehicles_per_lad.png", units="in", width=8, height=7, res=500)
+plot_grid(map3)
+dev.off()
 
 
