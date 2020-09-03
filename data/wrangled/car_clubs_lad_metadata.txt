@@ -1,0 +1,11 @@
+Local authority district (lad) level information regarding car clubs in the UK.
+Car club locations are scraped from the interactive car club location map on the CoMo website: 
+https://como.org.uk/shared-mobility/shared-cars/where/
+Year: 2020
+
+lad - lad code, with 2020 boundaries
+lad_name - corresponding lad name
+n_lots - number of car club lots (i.e. pick-up/drop-off locations) within the LAD
+n_vehicles - number of available car club vehicles within the LAD (lots may have more than one vehicle)
+n_operator - number of different car club operators that contain lots in the LAD. There are 5 in total (Co-Wheels, Enterprise Car Club, Ubeeqo, Zipcar, Zipcar Flex)
+Region - corresponding region

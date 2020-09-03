@@ -52,13 +52,16 @@ English local authorities. The parking data is provided by the RAC Foundation - 
 The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv).  
 A high parking revenue for a local authority suggests that a significant number of journeys are made to the area by car. <br>
 ![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png) <br> 
-
+Plotting the data as a scatter plot shows that local authorities with more car club vehicles in use generally have a higher parking surplus: 
 ![parking_surplus_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_cc_vehicles.png) <br> 
-
+This indicates that car clubs are most established in areas that are popular travel destinations in general.
 
 5) **Car clubs and accessibility**<br>
+[car_clubs_and_accessibility.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_accessibility.R) explores the number of car club vehicles per local authority with respect to
+the accessibility of the nearest town. The accessibility data is provided by the Department for Transport (https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts), and contains the
+average time taken per local authority to travel to the nearest town using public transport or by walking. <br>
 ![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_with_car_clubs.png) <br> 
-
-![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png =50x40) <br> 
+Plotting the travel time against the number of car club vehicles shows that there are generally fewer vehicles available in areas that are less accessibile:
+![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_cc_vehicles.png) <br> 
 
 

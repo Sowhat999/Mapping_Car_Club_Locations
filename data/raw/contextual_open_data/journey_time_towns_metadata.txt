@@ -1,0 +1,11 @@
+The average time taken per English local authority (LA) to get to the nearest town, using public transport or on foot.
+Year: 2017
+Source: #https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts
+
+lad - lad codes, updated to the 2020 boundaries
+town_time - average time taken (in minutes)
+town_30mins_pct	- percentage of LA population who can travel to the nearest town in 30 minutes or under, using public transport or on foot
+town_60mins_pct	- percentage of LA population who can travel to the nearest town in 60 minutes or under, using public transport or on foot
+town_30mins_cycle_pct - percentage of LA population who can travel to the nearest town in 30 minutes or under by cycling
+town_30mins_car_pct - percentage of LA population who can travel to the nearest town in 30 minutes or under by car
+

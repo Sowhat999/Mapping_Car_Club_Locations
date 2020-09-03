@@ -126,11 +126,13 @@ p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = surplus, fill = n_vehicles))
   scale_x_log10() + 
   scale_y_log10() +
   theme_classic() +
-  theme(legend.position = c(0.85,0.3), plot.title = element_text(size = 10, face = "bold"),
-        legend.title = element_text(size = 10), legend.text = element_text(size = 10))
+  theme(legend.position = c(0.65,0.3), plot.title = element_text(size = 10, face = "bold"),
+        legend.title = element_text(size = 8), legend.text = element_text(size = 8),
+        axis.title  = element_text(size = 7),
+        legend.direction = "horizontal")
 
 #save as png
-png("maps/parking_surplus_cc_vehicles.png", units="in", width=6, height=5, res=500)
+png("maps/parking_surplus_cc_vehicles.png", units="in", width=6, height=3, res=500)
 plot_grid(p1)
 dev.off()
 

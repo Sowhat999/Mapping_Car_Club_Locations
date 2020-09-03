@@ -1,0 +1,12 @@
+Locations of all car club lots (i.e. pick-up/drop-off locations) in the UK
+Data are scraped from the interactive car club location map on the CoMo website: 
+https://como.org.uk/shared-mobility/shared-cars/where/
+Year: 2020
+
+location - name/address of car club lot 
+lon, lat - coordinates of lot
+number_of_vehicles - number of car club vehicles stationed at the lot
+operator - operator of car club lot (5 in total: Co-Wheels, Enterprise Car Club, Ubeeqo, Zipcar, Zipcar Flex)
+lad - code of the local authority district (lad) that the lot belongs to
+lad_name - corresponding lad name
+lsoa_name - name of lower super output area that the lot belongs to
