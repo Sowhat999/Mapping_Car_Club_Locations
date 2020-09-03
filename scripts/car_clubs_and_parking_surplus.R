@@ -121,7 +121,7 @@ car_clubs_lad <- left_join(car_clubs_lad,parking_revenue)
 p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = surplus, fill = n_vehicles)) +
   geom_point(shape = 21, alpha = 0.8, size = 5) +
   scale_fill_viridis(option = "D", name = "Number of vehicles") +
-  labs(x = "Number of car club lots", y = "Council parking surplus (£, 000)") +
+  labs(x = "Number of car club vehicles", y = "Council parking surplus (£, 000)") +
   ggtitle("The number of car club vehicles per local authority vs council parking revenue") +
   scale_x_log10() + 
   scale_y_log10() +
@@ -132,7 +132,7 @@ p1 <- ggplot(car_clubs_lad, aes(x = n_vehicles, y = surplus, fill = n_vehicles))
         legend.direction = "horizontal")
 
 #save as png
-png("maps/parking_surplus_cc_vehicles.png", units="in", width=6, height=3, res=500)
+png("plots/parking_surplus_cc_vehicles.png", units="in", width=6, height=3, res=500)
 plot_grid(p1)
 dev.off()
 
