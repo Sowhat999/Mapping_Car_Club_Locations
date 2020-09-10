@@ -1,7 +1,7 @@
 # Mapping car club locations in the UK
 
 Plots and analysis related to car club locations in the UK.
-This work is part of a data science project with Leeds Institute for Data Analytics and the Department of Transport, University of Leeds, exploring car clubs as a sustainable alternative to privately owned vehicles.  
+This work is part of a data science project with Leeds Institute for Data Analytics and the Institute for Transport Studies, at the University of Leeds, exploring car clubs as a sustainable alternative to privately owned vehicles.  
 
 1) **Obtaining the car club locations** 
 [webscraping_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/webscraping_car_club_locations.R) uses a web-scraping technique to extract the locations (with lat long coordinates)
@@ -20,19 +20,18 @@ First, the interactive map on the CoMoUK website is recreated, showing the car c
  <img src="https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_clubs_html_preview.PNG"  
 </p>
 
-3) **Analysing car club distribution at the Upper Tier Local Authority level**<br>
-[car_clubs_lad_level.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_lad_level.R) gets local authority level variables,
+3) **Analysing car club distribution at the Local Authority District level**<br>
+[car_clubs_lad_level.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_lad_level.R) gets local authority district level variables,
  including the number of car club operators in use per local authority:<br>
 ![operators_per_lad.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/operators_per_lad.png) <br> 
-This map shows that car clubs are distributed across all regions of the UK.
-Outside of London, there is typically only one or two operators in use (mostly Enterprise and/or Co-wheels). 
-London has the highest concentration of car clubs in the UK, with upto five different operators servicing a single local authority (Wandsworth).
-There is a considerable section of the UK with no car club coverage, extending from South Wales and up to the East coast. <br>
+This map shows that car clubs are distributed across all regions of the UK.  
+London has the highest concentration of car clubs in the UK, with upto five different operators servicing a single local authority (Wandsworth). Outside of London, there are typically only one or two operators in use (mostly Enterprise and/or Co-wheels).
+There are 382 districts in the UK and 217 of them have car club vehicles. There is a considerable section of the UK with no car club coverage.  This includes a swathe of authorities extending from South Wales to the East coast, much of Kent, South West England, Northern Ireland and some authorities in Northern England and Scotland.  Absence of car clubs might be due to both commercial decisions by operators and also the regulatory and planning decisions of local authorities.   <br>
 The number of available car club vehicles per local authority is also analysed, giving an idea of which areas are car club "hot spots". <br>
 ![vehicles_per_lad.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/vehicles_per_lad.png) <br> 
-Unsurprisingly, the local authorities with the highest number of available vehicles are in London. Wandsworth has the most, with 386 vehicles. 
+Unsurprisingly, the local authorities with the highest number of available vehicles are in London. Wandsworth has the most, with 386 vehicles. Research into car-clubs shows many, but not all, successful schemes operate where there is high population density, a high proportion of younger adults and good public transport.   
 There are however areas outside of London with a high number of vehicles, suggesting that car clubs are also popular in these areas.
-Edinburgh, with 211 car club vehicles, contains the most of London. All vehicles are belong to Enterprise Car Club. Bristol and Brighton and Hove also 
+Edinburgh, with 211 car club vehicles, contains the most car club vehicles outside of London. Edinburgh has one car club operator; Enterprise Car Club. Bristol and Brighton and Hove also 
 appear to be popular for car club use, with 130 and 128 vehicles respectively. The table below displays the five local authorities outside of London with 
 the most car club vehicles. The local authority level data is stored in [car_clubs_lad.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/car_clubs_lad.csv). 
 
@@ -46,15 +45,19 @@ the most car club vehicles. The local authority level data is stored in [car_clu
 | Cambridge    | 63  | Enterprise Car Club, Zipcar | 
 
 
+## Mapping car club locations in the context of other features of districts
+It is useful to see the car club locations in the context of other characteristics of districts.  We might want to try to explain why car clubs locate in some places and not others for example by using data about the transport characteristics of an area or the ease of reaching places by public transport (what transport planners call accessibility).   
+
 4) **Car clubs and council parking revenue**<br>
 [car_clubs_and_parking_surplus.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_parking_surplus.R) compares car club distribution with council parking surplus for
-English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016, when English council parking profits exceeded three quarters of a billion pounds (an 11 % increase from the previous year)
+English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016.  High parking revenue might indicate a number of things such as a is high demand for parking (e.g. in tourist areas like Cornwall),high car dependence, an authority which is attempting to reduce car use in particular places, or or to the financial situation of the council.  Note also that the size and population of districts vary greatly and that may also affect the overall parking revenue.         
+
 The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv).  
-A high parking revenue for a local authority suggests that a significant number of journeys are made to the area by car. <br>
+<br>
 ![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png) <br> 
-Plotting the data as a scatter plot shows that local authorities with more car club vehicles in use generally have a higher parking surplus: 
+Plotting the data as a scatter plot shows that local authorities with more car club vehicles in use generally have a higher parking revenue, so whatever the reasons for that revenue, it may be useful to investigate that relationship in more detail: 
 ![parking_surplus_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_cc_vehicles.png) <br> 
-This indicates that car clubs are most established in areas that are popular travel destinations in general.
+
 
 5) **Car clubs and accessibility**<br>
 [car_clubs_and_accessibility.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_accessibility.R) explores the number of car club vehicles per local authority with respect to
@@ -63,5 +66,13 @@ average time taken per local authority to travel to the nearest town using publi
 ![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_with_car_clubs.png) <br> 
 Plotting the travel time against the number of car club vehicles shows that there are generally fewer vehicles available in areas that are less accessibile:
 ![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_cc_vehicles.png) <br> 
-This suggests that car clubs are more successful in areas with better public transport options.
+This suggests that car clubs are more prevalent in areas with better public transport options.
+
+
+6) **Further reading**<br>
+If you want to know more about car-clubs and how they could contribute to decarbonising transport then good start points include:<br>
+
+Shared mobility – where now, where next? Second report of the Commission on Travel Demand https://www.creds.ac.uk/publications/where-now-where-next/
+
+CoMoUK's information on shared Cars. https://como.org.uk/shared-mobility/shared-cars/how/ 
 
