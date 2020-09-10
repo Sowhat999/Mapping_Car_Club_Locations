@@ -4,15 +4,15 @@ Plots and analysis related to car club locations in the UK.
 This work is part of a data science project with Leeds Institute for Data Analytics and the Institute for Transport Studies, at the University of Leeds, exploring car clubs as a sustainable alternative to privately owned vehicles.  
 
 1) **Obtaining the car club locations** 
-[webscraping_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/webscraping_car_club_locations.R) uses a web-scraping technique to extract the locations (with lat long coordinates)
-of all car club *lots* (i.e. parking bay/pick-up location) in the UK. These data were extracted from an existing interactive map of car club locations on the CoMoUK website (https://como.org.uk/shared-mobility/shared-cars/where/). 
+[extracting_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/extracting_car_club_locations.R) loads and wrangles a json file containing the locations (with lat long coordinates)
+of all car club *lots* (i.e. parking bay/pick-up location) in the UK. These data were extracted from an existing interactive map of car club locations on the CoMoUK website (https://como.org.uk/shared-mobility/shared-cars/where/), following the instructions in [this blog post](https://onlinejournalismblog.com/2017/05/10/how-to-find-data-behind-chart-map-using-inspector/). 
 CoMoUK, short for Collaborative Mobility UK, are researching and developing shared transport and integrated mobility options in the UK. As well as the lot locations, the scraped car club data also includes the operator of the car club in question, and the
 number of vehicles stationed at each lot.
 There are five operators in total - Co-Wheels, Enterprise Car Club, Ubeeqo, Zipcar and Zipcar Flex.
 The processed data is stored in [car_club_locations.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/car_club_locations.csv).
 
 2) **Plotting the car club locations**
-[car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_club_locations.R) produces maps showing the distribution of car clubs in the UK.
+[mapping_car_club_locations.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/mapping_car_club_locations.R) produces maps showing the distribution of car clubs in the UK.
 First, the interactive map on the CoMoUK website is recreated, showing the car club locations and the corresponding operator. This is in html format, and can be downloaded from 
 [car_club_locations.html](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/car_club_locations.html). This file is too big to view in github - a static snapshot is provided below: 
 
@@ -46,15 +46,13 @@ the most car club vehicles. The local authority level data is stored in [car_clu
 
 
 ## Mapping car club locations in the context of other features of districts
-It is useful to see the car club locations in the context of other characteristics of districts.  We might want to try to explain why car clubs locate in some places and not others for example by using data about the transport characteristics of an area or the ease of reaching places by public transport (what transport planners call accessibility).   
+It is useful to see the car club locations in the context of other characteristics of districts.  We might want to try to explain why car clubs locate in some places and not others, for example by using data about the transport characteristics of an area or the ease of reaching places by public transport (what transport planners call accessibility).   
 
 4) **Car clubs and council parking revenue**<br>
 [car_clubs_and_parking_surplus.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_parking_surplus.R) compares car club distribution with council parking surplus for
-English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016.  High parking revenue might indicate a number of things such as a is high demand for parking (e.g. in tourist areas like Cornwall),high car dependence, an authority which is attempting to reduce car use in particular places, or or to the financial situation of the council.  Note also that the size and population of districts vary greatly and that may also affect the overall parking revenue.         
-
-The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv).  
-<br>
-![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png) <br> 
+English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016.  High parking revenue might indicate a number of things such as a is high demand for parking (e.g. in tourist areas like Cornwall),high car dependence, an authority which is attempting to reduce car use in particular places, or or to the financial situation of the council.  Note also that the size and population of districts vary greatly and that may also affect the overall parking revenue. <br>        
+The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv). <br>
+![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png)<br> 
 Plotting the data as a scatter plot shows that local authorities with more car club vehicles in use generally have a higher parking revenue, so whatever the reasons for that revenue, it may be useful to investigate that relationship in more detail: 
 ![parking_surplus_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_cc_vehicles.png) <br> 
 
