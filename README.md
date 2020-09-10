@@ -63,7 +63,7 @@ Plotting the data as a scatter plot shows that local authorities with more car c
 [car_clubs_and_accessibility.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_accessibility.R) explores the number of car club vehicles per local authority with respect to
 the accessibility of the nearest town. The accessibility data is provided by the Department for Transport (https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts), and contains the
 average time taken per local authority to travel to the nearest town using public transport or by walking. <br>
-![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_with_car_clubs.png) <br> 
+![travel_time_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/travel_time_with_car_clubs.png) <br> 
 Plotting the travel time against the number of car club vehicles shows that there are generally fewer vehicles available in areas that are less accessibile:
 ![travel_time_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/plots/travel_time_cc_vehicles.png) <br> 
 This suggests that car clubs are more prevalent in areas with better public transport options.
