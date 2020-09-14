@@ -48,16 +48,8 @@ the most car club vehicles. The local authority level data is stored in [car_clu
 ## Mapping car club locations in the context of other features of districts
 It is useful to see the car club locations in the context of other characteristics of districts.  We might want to try to explain why car clubs locate in some places and not others, for example by using data about the transport characteristics of an area or the ease of reaching places by public transport (what transport planners call accessibility).   
 
-4) **Car clubs and council parking revenue**<br>
-[car_clubs_and_parking_surplus.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_parking_surplus.R) compares car club distribution with council parking surplus for
-English local authorities. The parking data is provided by the RAC Foundation - a transport policy and research organisation - for the year 2015-2016.  High parking revenue might indicate a number of things such as a is high demand for parking (e.g. in tourist areas like Cornwall),high car dependence, an authority which is attempting to reduce car use in particular places, or or to the financial situation of the council.  Note also that the size and population of districts vary greatly and that may also affect the overall parking revenue. <br>        
-The data is available online in pdf format (http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion). This has been converted to an excel file using *pdf.wondershare* software, and is stored in [parking_revenue_wrangled.csv](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/data/wrangled/parking_revenue_wrangled.csv). <br>
-![parking_surplus_with_car_clubs.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_with_car_clubs.png)<br> 
-Plotting the data as a scatter plot shows that local authorities with more car club vehicles in use generally have a higher parking revenue, so whatever the reasons for that revenue, it may be useful to investigate that relationship in more detail: 
-![parking_surplus_cc_vehicles.png](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/maps/parking_surplus_cc_vehicles.png) <br> 
 
-
-5) **Car clubs and accessibility**<br>
+4) **Car clubs and accessibility**<br>
 [car_clubs_and_accessibility.R](https://github.com/CaitlinChalk/Mapping_Car_Club_Locations/blob/master/scripts/car_clubs_and_accessibility.R) explores the number of car club vehicles per local authority with respect to
 the accessibility of the nearest town. The accessibility data is provided by the Department for Transport (https://www.gov.uk/government/statistical-data-sets/journey-time-statistics-data-tables-jts), and contains the
 average time taken per local authority to travel to the nearest town using public transport or by walking. <br>
@@ -69,6 +61,8 @@ This suggests that car clubs are more prevalent in areas with better public tran
 
 6) **Further reading**<br>
 If you want to know more about car-clubs and how they could contribute to decarbonising transport then good start points include:<br>
+<br>
 Shared mobility – where now, where next? Second report of the Commission on Travel Demand https://www.creds.ac.uk/publications/where-now-where-next/ <br>
+<br>
 CoMoUK's information on shared Cars. https://como.org.uk/shared-mobility/shared-cars/how/ 
 
