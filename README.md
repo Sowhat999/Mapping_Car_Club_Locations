@@ -61,6 +61,6 @@ This suggests that car clubs are more prevalent in areas with better public tran
 
 6) **Further reading**<br>
 If you want to know more about car clubs and how they could contribute to decarbonising transport then good start points include:<br>
-Shared mobility – where now, where next? Second report of the Commission on Travel Demand https://www.creds.ac.uk/publications/where-now-where-next/ <br>
-CoMoUK's information on shared cars. https://como.org.uk/shared-mobility/shared-cars/how/ 
+* Shared mobility – where now, where next? Second report of the Commission on Travel Demand https://www.creds.ac.uk/publications/where-now-where-next/ <br>
+* CoMoUK's information on shared cars. https://como.org.uk/shared-mobility/shared-cars/how/ 
 
