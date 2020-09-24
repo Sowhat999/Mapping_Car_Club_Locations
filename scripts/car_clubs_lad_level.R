@@ -186,4 +186,3 @@ png("maps/vehicles_per_lad.png", units="in", width=8, height=7, res=500)
 plot_grid(map3)
 dev.off()
 
-

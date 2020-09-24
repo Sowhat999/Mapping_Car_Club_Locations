@@ -30,7 +30,7 @@ travel_town$town_30mins_car_pct <- as.numeric(travel_town$town_30mins_car_pct)
 lad_replace <- read.csv("data/wrangled/lad_replace.csv")
 
 #convert old name list (separated by " & " into list)
-lad_replace$old_names <- lapply(lad_replace$old_names, strsplit, " & ")
+lad_replace$old_names <- unique(lad_replace$old_name)
 #unlist to convert to vector
 lad_replace$old_names <- lapply(lad_replace$old_names, unlist)
 #add comma to Bournemouth, Christchurch and Poole

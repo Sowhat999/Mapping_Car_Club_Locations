@@ -20,6 +20,8 @@ lad.sf <- lad.sf %>%
   select(lad_name, lad, geometry) %>%
   filter(!(lad_name %in% c("Orkney Islands", "Shetland Islands", "Na h-Eileanan Siar")))
 
+lad_original <- data.frame(lad.sf) %>% select(!geometry)
+
 # Edit some outdated LAD names and codes for consistency with other data sets 
 #(also for consistency with the lad codes and names from the ggmap package)
 
@@ -43,12 +45,10 @@ Buck <- lad.sf %>%
   filter(lad_name %in% c("Aylesbury Vale", "South Bucks"))
 
 NED <- lad.sf %>% 
-  filter(lad_name %in% c("North Dorset", "East Dorset", "Purbeck", "Weymouth and Portland"))
+  filter(lad_name %in% c("North Dorset", "East Dorset", "West Dorset", "Purbeck", "Weymouth and Portland"))
 
 TDWS <- lad.sf %>%
   filter(lad_name %in% c("Taunton Deane", "West Somerset"))
-
-lad_replace <- list("old_names" <- c( c("Bournemouth","Christchurch", "Poole"), c("Suffolk Coastal", "Waveney")   ))
 
 BCP2 <- st_combine(BCP)
 ES2 <- st_combine(ES)
@@ -56,6 +56,13 @@ WS2 <- st_combine(WS)
 Buck2 <- st_combine(Buck)
 NED2 <- st_combine(NED)
 TDWS2 <- st_combine(TDWS)
+
+old_names <- list(c("Bournemouth", "Christchurch", "Poole"), c("Suffolk Coastal", "Waveney"),
+                  c("St Edmundsbury", "Forest Heath"), c("Aylesbury Vale", "South Bucks", "Chiltern", "Wycombe"),
+                  c("North Dorset", "East Dorset", "West Dorset", "Weymouth and Portland", "Purbeck"), c("Taunton Deane", "West Somerset"))
+
+old_names_total <- unlist(old_names)
+
 
 lad.sf <- lad.sf %>%
   add_row(lad_name = "Bournemouth, Christchurch and Poole", lad = "E06000058", 
@@ -65,28 +72,35 @@ lad.sf <- lad.sf %>%
   add_row(lad_name = "Buckinghamshire", lad = "E06000060", geometry = Buck2) %>%
   add_row(lad_name = "Dorset", lad = "E06000059", geometry = NED2) %>%
   add_row(lad_name = "Somerset West and Taunton", lad = "E07000246", geometry = TDWS2) %>%
-  filter(!(lad_name %in% c("Bournemouth","Christchurch", "Poole", 
-                           "Suffolk Coastal", "Waveney",
-                           "Forest Heath", "St Edmundsbury",
-                           "Aylesbury Vale", "South Bucks", "Chiltern", "Wycombe", 
-                           "North Dorset", "East Dorset", "Purbeck","Weymouth and Portland",
-                           "Taunton Deane", "West Somerset")))
+  filter(!(lad_name %in% old_names_total))
 
 #make a dataframe of these replacements for reference in other scripts: (also add West Dorset which is relevant in some cases)
-#separator = & not ,(for writing to csv)
-old_names <- list("Bournemouth & Christchurch & Poole", "Suffolk Coastal & Waveney",
-                  "St Edmundsbury & Forest Heath", "Aylesbury Vale & South Bucks & Chiltern & Wycombe",
-                  "North Dorset & East Dorset & West Dorset & Weymouth and Portland & Purbeck", "Taunton Deane & West Somerset")
 
 new_names <- list("Bournemouth Christchurch and Poole","East Suffolk", "West Suffolk",
                   "Buckinghamshire", "Dorset", "Somerset West and Taunton")
 
 new_codes <- list("E06000058","E07000244","E07000245","E06000060", "E06000059","E07000246")
 
-lad_replace <- data.frame(old_names = I(old_names), new_names = I(new_names), new_codes = I(new_codes))
+old_codes <- lad_original %>%
+  filter(lad_name %in% old_names_total)
+
+lad_replace <- data.frame(old_name = old_names_total)
+lad_replace <- left_join(lad_replace, old_codes, by = c("old_name" = "lad_name"))
+
+lad_replace$new_codes <- as.character(new_codes)
+lad_replace$new_names <- NA
+
+n = length(old_names)
+for (i in seq(1,n)){
+  l = length(old_names[[i]])
+  for (j in seq(1,l)){
+    old_name2 <- old_names[[i]][j]
+    lad_replace$new_names[lad_replace$old_name == old_name2] <- as.character(new_names[[i]])
+  }
+}
 
 write.csv(lad_replace, 'data/wrangled/lad_replace.csv', row.names = FALSE)
-#to do - add old codes, not just old names
+
 
 #correct Glasgow city, Fife, North Lanarkshire and Perth and Kinross lad codes:
 #(according to google)
