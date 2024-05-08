@@ -1,6 +1,0 @@
-Council parking surplus per English local authority (LA)
-Year: 2015 - 2016
-Source: http://www.racfoundation.org/media-centre/parking-profits-break-three-quarters-of-a-billion
-
-lad_name : LA name, updated according to the 2020 boundaries
-surplus: parking surplus, per £1000
